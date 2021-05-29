@@ -83,6 +83,7 @@
             />
     </fragment>
 
+
     <fragment
         android:id="@+id/confirmationFragment"
         android:name="com.example.navigationcomponentexample.ConfirmationFragment"
@@ -94,7 +95,16 @@
 
         <argument android:name="amount"
             app:argType="com.example.navigationcomponentexample.Money"/>
-
+        <action
+            android:id="@+id/action_confirmationFragment_to_navDestinationActivity"
+            app:destination="@id/navDestinationActivity" />
     </fragment>
+
+
+    <activity
+        android:id="@+id/navDestinationActivity"
+        android:name="com.example.navigationcomponentexample.NavDestinationActivity"
+        android:label="activity_nav_destination"
+        tools:layout="@layout/activity_nav_destination" />
 
 </navigation>

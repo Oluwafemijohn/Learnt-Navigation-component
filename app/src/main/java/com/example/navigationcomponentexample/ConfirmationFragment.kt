@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.example.navigationcomponentexample.databinding.FragmentChooseRecipientBinding
 import com.example.navigationcomponentexample.databinding.FragmentConfirmationBinding
 
-class ConfirmationFragment : Fragment() {
+class ConfirmationFragment : Fragment(), View.OnClickListener {
 
     lateinit var navController: NavController
     private val binding get() = _binding!!
@@ -32,10 +33,20 @@ class ConfirmationFragment : Fragment() {
         return binding.root
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+        binding.moveToDestinationActivity.setOnClickListener(this)
         val money = money.amount
         val confirmationMessage = "You are sending $money to $recipient"
         binding.confirmationMessage.text = confirmationMessage
+    }
+
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.move_to_destination_activity -> navController.navigate(R.id.action_confirmationFragment_to_navDestinationActivity)
+        }
     }
 }
